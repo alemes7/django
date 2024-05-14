@@ -2,5 +2,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.homepage)
+    path('', views.homepage),
+    path('reserve/', views.reserve)
+    
 ]

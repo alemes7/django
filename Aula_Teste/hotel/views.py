@@ -7,3 +7,9 @@ def homepage(request):
     dados_hotel = Hotel.objects.all()
     context['dados_hotel'] = dados_hotel
     return render(request, 'homepage.html', context) #retorna a pagina homepage.html
+
+def reserve(request):
+    context = {}
+    dados_hotel = Hotel.objects.all()
+    context['dados_hotel'] = dados_hotel
+    return render(request, 'reserve.html') #retorna a pagina quartos.html
