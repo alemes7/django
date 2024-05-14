@@ -2,17 +2,27 @@
 {% load static %}
 
 {% block title %}
-    Hotel senai
+Hotel Senai
 {% endblock %}
 
 {% block body %}
-    {% for item in dados_hotel %}
-        <ul>
-            <li>{{ item.titulo }}</li>
-            <li>{{ item.descricao }}</li>
-            <li>
-                <img src="{{item.logo.url}}" alt="logo">
-            </li>
-        </ul>
-    {% endfor %}
+<div class="container-fluid main">
+
+    <div id="myCarousel" class="carousel carousel-fade slide" data-ride="carousel" data-interval="3000">
+        <div class="carousel-inner" role="listbox">
+            <div class="item active background a"></div>
+        </div>
+    </div>
+
+    <div class="covertext">
+        <div class="col-lg-10" style="float:none; margin:0 auto;">
+            <h1 class="title">HOTELEMES</h1>
+            <h3 class="subtitle">Seu conforto em primeiro lugar!</h3>
+        </div>
+        <div class="col-xs-12 explore">
+            <a href="#"><button type="button" class="btn btn-lg explorebtn">RESERVE JÁ</button></a>
+        </div>
+    </div>
+
+</div>
 {% endblock %}
