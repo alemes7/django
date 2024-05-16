@@ -3,6 +3,8 @@ from .models import Hotel #importa o model hotel
 from .models import quarto #importa o model quarto
 from .forms import FormNome #importa o form nome
 from .models import Usuario #importa o model usuario
+from .forms import FormReserva #importa o form reserva
+from .models import Reserva_quarto #importa o model reserva_quarto
 
 # Create your views here.
 def homepage(request):
@@ -68,3 +70,28 @@ def nome(request):
         form = FormNome()
 
         return render(request, "nome.html", {"form": form})
+    
+def reservar_quarto(request):
+    if request.method == "POST":
+        form = FormReserva(request.POST)
+        if form.is_valid():
+            var_nome = form.cleaned_data['nome']
+            var_email = form.cleaned_data['email']
+            var_idade = form.cleaned_data['idade']
+            var_data = form.cleaned_data['data']
+            var_quarto = form.cleaned_data['quarto']
+
+            reservar_quarto = Reserva_quarto(nome=var_nome, email=var_email, idade=var_idade, data=var_data, quarto=var_quarto)
+            reservar_quarto.save()
+
+            print(var_nome)
+            print(var_email)
+            print(var_idade)
+            print(var_data)
+            print(var_quarto)
+
+            return HttpResponse("<h1>thanks</h1>")
+    else:
+        form = FormReserva()
+
+        return render(request, "reservar_quarto.html", {"form": form})

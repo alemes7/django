@@ -8,5 +8,6 @@ urlpatterns = [
     path('solteiro', views.solteiro, name='solteiro'),
     path('casal', views.casal, name='casal'),
     path('comfort', views.comfort, name='comfort'),
-    path('luxo', views.luxo, name='luxo')
+    path('luxo', views.luxo, name='luxo'),
+    path('reservar_quarto', views.reservar_quarto, name='reservar_quarto')
 ]

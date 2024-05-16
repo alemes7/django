@@ -1,5 +1,5 @@
 from django.db import models
-import datetime
+from django.utils import timezone
 
 # Create your models here.
 
@@ -35,3 +35,10 @@ class Usuario(models.Model): #models.Model, é uma classe do django que cria um 
 
     def __str__(self):
         return self.nome
+    
+class Reserva_quarto(models.Model):
+    nome = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50)
+    idade = models.IntegerField()
+    data = models.DateField(default=timezone.now)
+    quarto = models.CharField(max_length=50)
