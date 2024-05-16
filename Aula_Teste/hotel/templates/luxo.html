@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+Reserva de Quarto Casal
+{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card" style="height: 540px; width: 600px; margin: 20px; padding: 10px">
+                <div style="display: flex; justify-content: center;">
+                    <img src="{{ dados_quarto.0.foto_quarto.url }}" style="width: 500px; height: 300px; " alt="logo">
+                </div>               
+                <div class="card-body">
+                    <h5 class="card-title">{{ dados_quarto.0.tipo }}</h5>
+                    <p class="card-text">{{ dados_quarto.0.descricao }}</p>
+                    <p class="card-text">Disponibilidade: {{ dados_quarto.0.disponibilidade }}</p>
+                    <p class="card-text">R$ {{ dados_quarto.0.valor }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="height: 540px; width: 600px; margin: 20px; padding: 10px">
+            <div style="display: flex; justify-content: center;">
+                <img src="{{ dados_quarto.1.foto_quarto.url }}" style="width: 500px; height: 300px; " alt="logo">
+            </div>               
+            <div class="card-body">
+                <h5 class="card-title">{{ dados_quarto.1.tipo }}</h5>
+                <p class="card-text">{{ dados_quarto.1.descricao }}</p>
+                <p class="card-text">Disponibilidade: {{ dados_quarto.1.disponibilidade }}</p>
+                <p class="card-text">R$ {{ dados_quarto.1.valor }}</p>
+            </div>
+        </div>
+        <div class="card" style="height: 540px; width: 600px; margin: 20px; padding: 10px">
+            <div style="display: flex; justify-content: center;">
+                <img src="{{ dados_quarto.2.foto_quarto.url }}" style="width: 500px; height: 300px; " alt="logo">
+            </div>               
+            <div class="card-body">
+                <h5 class="card-title">{{ dados_quarto.2.tipo }}</h5>
+                <p class="card-text">{{ dados_quarto.2.descricao }}</p>
+                <p class="card-text">Disponibilidade: {{ dados_quarto.2.disponibilidade }}</p>
+                <p class="card-text">R$ {{ dados_quarto.2.valor }}</p>
+            </div>
+        </div>
+        <div class="card" style="height: 540px; width: 600px; margin: 20px; padding: 10px">
+            <div style="display: flex; justify-content: center;">
+                <img src="{{ dados_quarto.3.foto_quarto.url }}" style="width: 500px; height: 300px; " alt="logo">
+            </div>               
+            <div class="card-body">
+                <h5 class="card-title">{{ dados_quarto.3.tipo }}</h5>
+                <p class="card-text">{{ dados_quarto.3.descricao }}</p>
+                <p class="card-text">Disponibilidade: {{ dados_quarto.3.disponibilidade }}</p>
+                <p class="card-text">R$ {{ dados_quarto.3.valor }}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

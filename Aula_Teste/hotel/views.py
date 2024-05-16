@@ -42,6 +42,12 @@ def comfort(request):
     context['dados_quarto'] = dados_quarto
     return render(request, 'comfort.html', context) #retorna a pagina comfort.html
 
+def luxo(request):
+    context = {}
+    dados_quarto = quarto.objects.filter(tipo='LUXO')
+    context['dados_quarto'] = dados_quarto
+    return render(request, 'luxo.html', context) #retorna a pagina luxo.html
+
 def nome(request):
     if request.method == "POST":
         form = FormNome(request.POST)
