@@ -1,29 +1,66 @@
 {% extends 'index.html' %}
 
 {% block title %}
-Hotel Senai
+    HOTEL - NOME
+{% endblock %}
+
+{% block head %}
+    <style>
+        /* Estilos personalizados para os inputs */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        /* Estilos personalizados para o botão */
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        /* Estilo para as labels */
+        label {
+            color: white;
+            margin-bottom: 6px;
+            display: block;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
-
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form action="nome" method="post" class="border p-4 rounded">
-                {% csrf_token %}
-                <h2 class="mb-4">Faça sua reserva</h2>
-                <div class="form-group mt-3">
-                    <label for="id_nome" style="display: block;">Nome:</label>
-                    {{ form.nome }}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-6">
+                <div class="bg-dark p-3 border rounded-lg">
+                    <h2 class="text-center text-white">Cadastro</h2>
+                    <form action="nome" method="post">
+                        {% csrf_token %}
+                        <div class="mb-2">
+                            <label for="id_nome">Nome:</label>
+                            {{ form.nome }}
+                        </div>
+                        <div class="mb-2">
+                            <label for="id_email">E-mail:</label>
+                            {{ form.email }} 
+                        </div>
+                        <div class="mb-2">
+                            <label for="id_senha">Senha:</label>
+                            {{ form.senha }}
+                        </div>
+                        <button type="submit">Submit</button>
+                    </form>
                 </div>
-                <div class="form-group mt-4">
-                    <label for="id_email" style="display: block;">Email: </label>
-                    {{ form.email }}
-                </div>
-                <button type="submit" class="btn btn-primary mt-3">Enviar</button>
-            </form>
+            </div>
         </div>
     </div>
-</div>
-
 {% endblock %}

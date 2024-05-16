@@ -36,18 +36,26 @@ def casal(request):
     context['dados_quarto'] = dados_quarto
     return render(request, 'casal.html', context) #retorna a pagina casal.html
 
+def comfort(request):
+    context = {}
+    dados_quarto = quarto.objects.filter(tipo='CONFORTO')
+    context['dados_quarto'] = dados_quarto
+    return render(request, 'comfort.html', context) #retorna a pagina comfort.html
+
 def nome(request):
     if request.method == "POST":
         form = FormNome(request.POST)
         if form.is_valid():
             var_nome = form.cleaned_data['nome']
             var_email = form.cleaned_data['email']
+            var_senha = form.cleaned_data['senha']
 
-            user = Usuario(nome=var_nome, email=var_email)
+            user = Usuario(nome=var_nome, email=var_email, senha=var_senha)
             user.save()
 
             print(var_nome)
             print(var_email)
+            print(var_senha)
 
             return HttpResponse("<h1>thanks</h1>")
     else:

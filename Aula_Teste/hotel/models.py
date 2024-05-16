@@ -31,6 +31,7 @@ class quarto(models.Model):
 class Usuario(models.Model): #models.Model, é uma classe do django que cria um modelo de dados
     nome = models.CharField(max_length=50)
     email = models.EmailField(max_length=50) #models.EmailField, é um tipo de dado que aceita emails
+    senha = models.CharField(max_length=20)
 
     def __str__(self):
         return self.nome
