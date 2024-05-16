@@ -11,4 +11,4 @@ class FormReserva(forms.Form):
     email = forms.EmailField(label='Email', max_length=50)
     idade = forms.IntegerField(label='Idade')
     data = forms.DateField(label='Data', widget=forms.DateInput(attrs={'type': 'date'}))
-    quarto = forms.ModelChoiceField(label='Quarto', queryset=quarto.objects.all())
+    quarto = forms.ModelChoiceField(label='Quarto', queryset=quarto.objects.filter(id__in=[1, 2, 3, 4]))

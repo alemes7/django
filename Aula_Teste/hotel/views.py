@@ -90,8 +90,11 @@ def reservar_quarto(request):
             print(var_data)
             print(var_quarto)
 
-            return HttpResponse("<h1>thanks</h1>")
+            return render(request, "reserva_sucesso.html")
     else:
         form = FormReserva()
 
         return render(request, "reservar_quarto.html", {"form": form})
+    
+def reserva_sucesso(request):
+    return render(request, "reserva_sucesso.html") #retorna a pagina reserva_sucesso.html
