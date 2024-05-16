@@ -6,10 +6,24 @@ Hotel Senai
 
 {% block body %}
 
-<form action="nome" method="post">
-    {% csrf_token %} <!-- csrf é um método de segurança do site -->
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="nome" method="post" class="border p-4 rounded">
+                {% csrf_token %}
+                <h2 class="mb-4">Faça sua reserva</h2>
+                <div class="form-group mt-3">
+                    <label for="id_nome" style="display: block;">Nome:</label>
+                    {{ form.nome }}
+                </div>
+                <div class="form-group mt-4">
+                    <label for="id_email" style="display: block;">Email: </label>
+                    {{ form.email }}
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
