@@ -13,15 +13,28 @@ def homepage(request):
 
 def reserve(request):
     context = {}
-    dados_quarto = quarto.objects.all()
-    context['dados_quarto'] = dados_quarto
-    return render(request, 'reserve.html', context) #retorna a pagina quartos.html
+    tipos_quartos = ['SOLTEIRO', 'CASAL', 'CONFORTO', 'LUXO']
+    dados_quartos = []
+
+    for tipo in tipos_quartos:
+        quarto_tipo = quarto.objects.filter(tipo=tipo).first()
+        if quarto_tipo:
+            dados_quartos.append(quarto_tipo)
+
+    context['dados_quarto'] = dados_quartos
+    return render(request, 'reserve.html', context)
 
 def solteiro(request):
     context = {}
     dados_quarto = quarto.objects.filter(tipo='SOLTEIRO')
     context['dados_quarto'] = dados_quarto
     return render(request, 'solteiro.html', context) #retorna a pagina solteiroo.html
+
+def casal(request):
+    context = {}
+    dados_quarto = quarto.objects.filter(tipo='CASAL')
+    context['dados_quarto'] = dados_quarto
+    return render(request, 'casal.html', context) #retorna a pagina casal.html
 
 def nome(request):
     if request.method == "POST":
