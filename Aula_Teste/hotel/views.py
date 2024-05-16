@@ -21,7 +21,7 @@ def solteiro(request):
     context = {}
     dados_quarto = quarto.objects.filter(tipo='SOLTEIRO')
     context['dados_quarto'] = dados_quarto
-    return render(request, 'solteiro.html', context) #retorna a pagina solterio.html
+    return render(request, 'solteiro.html', context) #retorna a pagina solteiroo.html
 
 def nome(request):
     if request.method == "POST":
