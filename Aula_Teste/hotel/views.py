@@ -14,3 +14,7 @@ def reserve(request):
     dados_quarto = quarto.objects.all()
     context['dados_quarto'] = dados_quarto
     return render(request, 'reserve.html', context) #retorna a pagina quartos.html
+
+def quartos_solteiro(request):
+    quartos = quarto.objects.filter(tipo='solteiro')
+    return render(request, 'solteiro.html', {'quartos': quartos}) #retorna a pagina solteiro.html
