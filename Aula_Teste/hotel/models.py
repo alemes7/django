@@ -10,6 +10,8 @@ TIPOS__QUARTOS = (
     ("LUXO" , "Luxo")
 )
 
+# Classe Hotel, onde é criado o modelo Hotel
+
 class Hotel(models.Model):
     titulo = models.CharField(max_length=50) #models.CharField, é um tipo de dado que aceita strings
     descricao = models.TextField(max_length=500) #models.TextField, é um tipo de dado que aceita textos
@@ -17,6 +19,10 @@ class Hotel(models.Model):
 
     def __str__(self):
         return self.titulo
+    
+# ----------------------------------------------------------------------------------------------------------------------------
+
+# Classe quarto, onde é criado o modelo quarto
 
 class quarto(models.Model):
     tipo = models.CharField(max_length=15, choices=TIPOS__QUARTOS) #models.CharField, é um tipo de dado que aceita strings
@@ -28,13 +34,9 @@ class quarto(models.Model):
     def __str__(self):
         return self.tipo
     
-class Usuario(models.Model): #models.Model, é uma classe do django que cria um modelo de dados
-    nome = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50) #models.EmailField, é um tipo de dado que aceita emails
-    senha = models.CharField(max_length=20)
+# ----------------------------------------------------------------------------------------------------------------------------
 
-    def __str__(self):
-        return self.nome
+# Classe Reserva_quarto, onde é criado o modelo Reserva_quarto
     
 class Reserva_quarto(models.Model):
     nome = models.CharField(max_length=50)
@@ -42,3 +44,7 @@ class Reserva_quarto(models.Model):
     idade = models.IntegerField()
     data = models.DateField(default=timezone.now)
     quarto = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nome # retorna o nome do cliente
+# ----------------------------------------------------------------------------------------------------------------------------
