@@ -111,28 +111,32 @@ def nome(request): #cadastro de usuario
     
 def reservar_quarto(request):
     if request.method == "POST":
-        form = FormReserva(request.POST)
-        if form.is_valid():
-            var_nome = form.cleaned_data['nome']
-            var_email = form.cleaned_data['email']
-            var_idade = form.cleaned_data['idade']
-            var_data = form.cleaned_data['data']
-            var_quarto = form.cleaned_data['quarto']
+        if request.user.is_authenticated:  # Verifica se o usuário está autenticado
+            form = FormReserva(request.POST)
+            if form.is_valid():
+                var_nome = form.cleaned_data['nome']
+                var_email = form.cleaned_data['email']
+                var_idade = form.cleaned_data['idade']
+                var_data = form.cleaned_data['data']
+                var_quarto = form.cleaned_data['quarto']
 
-            reservar_quarto = Reserva_quarto(nome=var_nome, email=var_email, idade=var_idade, data=var_data, quarto=var_quarto)
-            reservar_quarto.save()
+                reservar_quarto = Reserva_quarto(nome=var_nome, email=var_email, idade=var_idade, data=var_data, quarto=var_quarto)
+                reservar_quarto.save()
 
-            print(var_nome)
-            print(var_email)
-            print(var_idade)
-            print(var_data)
-            print(var_quarto)
+                print(var_nome)
+                print(var_email)
+                print(var_idade)
+                print(var_data)
+                print(var_quarto)
 
-            return render(request, "reserva_sucesso.html")
+                return render(request, "reserva_sucesso.html")
+        else:
+            messages.error(request, 'Você precisa estar logado para reservar um quarto.')
+            return redirect('login')
     else:
         form = FormReserva()
 
-        return render(request, "reservar_quarto.html", {"form": form})
+    return render(request, "reservar_quarto.html", {"form": form})
     
 # ----------------------------------------------------------------------------------------------------------------------------
     
