@@ -36,13 +36,15 @@
                 {% endif %}
             </ul>
             {% if user.is_authenticated %}
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="logout">Logout</a>
+                        <a class="nav-link active d-flex align-items-center" aria-current="page" href="profile">
+                            <i class="bi bi-person-circle me-2"></i>{{ user.first_name }}
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="">
-                            {{ user.first_name }} <i class="bi bi-person-circle"></i>
+                        <a class="nav-link active d-flex align-items-center" aria-current="page" href="logout">
+                            <i class="bi bi-box-arrow-right" style="margin-left: 10px; margin-right: 5px;"></i> Sair
                         </a>
                     </li>
                 </ul>
