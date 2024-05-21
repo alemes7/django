@@ -43,10 +43,10 @@
             <div class="col-lg-6">
                 <div class="bg-dark p-3 border rounded-lg">
                     <h2 class="text-center text-white">Cadastro</h2>
-                    <form action="nome" method="post">
+                    <form action="login" method="post">
                         {% csrf_token %}
                         <div class="mb-2">
-                            <label for="id_nome">Nome:</label>
+                            <label for="id_nome">Nome de Usuário:</label>
                             {{ form.usuario }}
                         </div>
                         <div class="mb-2">

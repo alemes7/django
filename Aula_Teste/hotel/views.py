@@ -1,12 +1,12 @@
-from django.shortcuts import render, HttpResponse #render, renderiza a pagina html e HttpResponse, retorna uma resposta ao cliente
+from django.shortcuts import render, HttpResponse, redirect #render, renderiza a pagina html e HttpResponse, retorna uma resposta ao cliente
 from .models import Hotel #importa o model hotel
 from .models import quarto #importa o model quarto
-from .forms import FormNome #importa o form nome
 from .forms import FormReserva #importa o form reserva
 from .forms import FormLogin #importa o form login
+from .forms import FormCadastro #importa o form cadastro
 from .models import Reserva_quarto #importa o model reserva_quarto
 from django.contrib.auth.models import User #importa o model usuario do django
-from django.contrib.auth import authenticate, login  #importa o authenticate e login do django
+from django.contrib.auth import authenticate, login as auth_login  #importa o authenticate e login do django
 
 # Create your views here.
 
@@ -79,7 +79,7 @@ def luxo(request):
 
 def nome(request): #cadastro de usuario
     if request.method == "POST":
-        form = Form(request.POST)
+        form = FormCadastro(request.POST)
         if form.is_valid():
             var_first_name = form.cleaned_data['first_name']
             var_last_name = form.cleaned_data['last_name']
@@ -98,9 +98,9 @@ def nome(request): #cadastro de usuario
             print(var_email)
             print(var_senha)
 
-            return HttpResponse("<h1>thanks</h1>")
+            return redirect('login')
     else:
-        form = FormNome()
+        form = FormCadastro()
 
         return render(request, "nome.html", {"form": form})
     
@@ -148,14 +148,15 @@ def login(request):
         var_usuario = form.cleaned_data['usuario']
         var_senha = form.cleaned_data['senha']
 
-        user = authenticate(username=var_usuario, password=var_senha)
+        user = authenticate(request, username=var_usuario, password=var_senha)
 
         if user is not None:
-            login(request, user)
-            return HttpResponse("<h1>Logado com sucesso</h1>")
+            auth_login(request, user)
+            return redirect('reservar_quarto')
         else:
             return HttpResponse("<h1>Usuário ou senha inválidos</h1>")
-        
-    return render(request, "login.html", {"form": form}) #retorna a pagina login.html
+    else:
+        form = FormLogin()
+        return render(request, "login.html", {"form": form}) #retorna a pagina login.html
 
 # ----------------------------------------------------------------------------------------------------------------------------
