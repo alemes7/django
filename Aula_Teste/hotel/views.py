@@ -6,7 +6,7 @@ from .forms import FormLogin #importa o form login
 from .forms import FormCadastro #importa o form cadastro
 from .models import Reserva_quarto #importa o model reserva_quarto
 from django.contrib.auth.models import User #importa o model usuario do django
-from django.contrib.auth import authenticate, login as auth_login  #importa o authenticate e login do django
+from django.contrib.auth import authenticate, logout as auth_logout, login as auth_login  #importa o authenticate e login do django
 
 # Create your views here.
 
@@ -160,3 +160,7 @@ def login(request):
         return render(request, "login.html", {"form": form}) #retorna a pagina login.html
 
 # ----------------------------------------------------------------------------------------------------------------------------
+
+def logout(request):
+    auth_logout(request)
+    return redirect('homepage') 

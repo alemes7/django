@@ -8,16 +8,11 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="reserve">Hoteis</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'reserve' %}">Hoteis</a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="nome">Cadastro</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="reservar_quarto">Reservar</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'reservar_quarto' %}">Reservar</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -31,7 +26,25 @@
                         <li><a class="dropdown-item" href="luxo">Luxo</a></li>
                     </ul>
                 </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="nome">Cadastro</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="login">Login</a>
+                </li>
+                {% endif %}
             </ul>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ user.first_name }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="logout">Logout</a>
+                </li>
+            </ul>
+            {% endif %}
         </div>
     </div>
 </nav>
