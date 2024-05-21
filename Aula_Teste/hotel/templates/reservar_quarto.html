@@ -58,7 +58,7 @@
                         <div class="mb-2">
                             <label for="id_email">E-mail:</label>
                             {% if user.is_authenticated %}
-                                <input type="email" name="email" id="id_email" value="{{ user.email }}" required>
+                                <input type="email" name="email" id="id_email" value="{{ user.email }}" required> <!-- Aqui foi adicionado o campo email no value -->
                             {% else %}
                                 <input type="email" name="email" id="id_email" required>
                             {% endif %}

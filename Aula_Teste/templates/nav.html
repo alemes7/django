@@ -6,44 +6,46 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="reserve">Hoteis</a>
                 </li>
                 {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="reservar_quarto">Reservar</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Quartos
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="solteiro">Solteiro</a></li>
-                        <li><a class="dropdown-item" href="casal">Casal</a></li>
-                        <li><a class="dropdown-item" href="comfort">Comfort</a></li>
-                        <li><a class="dropdown-item" href="luxo">Luxo</a></li>
-                    </ul>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="reservar_quarto">Reservar</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Quartos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="solteiro">Solteiro</a></li>
+                            <li><a class="dropdown-item" href="casal">Casal</a></li>
+                            <li><a class="dropdown-item" href="comfort">Comfort</a></li>
+                            <li><a class="dropdown-item" href="luxo">Luxo</a></li>
+                        </ul>
+                    </li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="nome">Cadastro</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="login">Login</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="nome">Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="login">Login</a>
+                    </li>
                 {% endif %}
             </ul>
             {% if user.is_authenticated %}
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">{{ user.first_name }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="logout">Logout</a>
-                </li>
-            </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="logout">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="">
+                            {{ user.first_name }} <i class="bi bi-person-circle"></i>
+                        </a>
+                    </li>
+                </ul>
             {% endif %}
         </div>
     </div>
