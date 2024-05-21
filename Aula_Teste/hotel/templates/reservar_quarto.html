@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 
 {% block title %}
-    HOTEL - NOME
+    HOTELEMES - Reservar Quarto
 {% endblock %}
 
 {% block head %}
@@ -49,11 +49,19 @@
                         {% csrf_token %}
                         <div class="mb-2">
                             <label for="id_nome">Nome:</label>
-                            {{ form.nome }}
+                            {% if user.is_authenticated %}
+                                <input type="text" name="nome" id="id_nome" value="{{ user.first_name }}" required>
+                            {% else %}
+                                <input type="text" name="nome" id="id_nome" required>
+                            {% endif %}
                         </div>
                         <div class="mb-2">
                             <label for="id_email">E-mail:</label>
-                            {{ form.email }} 
+                            {% if user.is_authenticated %}
+                                <input type="email" name="email" id="id_email" value="{{ user.email }}" required>
+                            {% else %}
+                                <input type="email" name="email" id="id_email" required>
+                            {% endif %}
                         </div>
                         <div class="mb-2">
                             <label for="id_idade">Idade:</label>
