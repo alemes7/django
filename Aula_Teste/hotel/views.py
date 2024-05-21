@@ -5,6 +5,7 @@ from .forms import FormReserva #importa o form reserva
 from .forms import FormLogin #importa o form login
 from .forms import FormCadastro #importa o form cadastro
 from .models import Reserva_quarto #importa o model reserva_quarto
+from django.contrib import messages
 from django.contrib.auth.models import User #importa o model usuario do django
 from django.contrib.auth import authenticate, logout as auth_logout, login as auth_login  #importa o authenticate e login do django
 
@@ -143,22 +144,26 @@ def reserva_sucesso(request):
 # Função que retorna a pagina login.html, onde o usuario pode fazer login
 
 def login(request):
-    form = FormLogin(request.POST)
-    if form.is_valid():
-        var_usuario = form.cleaned_data['usuario']
-        var_senha = form.cleaned_data['senha']
+    if request.method == "POST":
+        form = FormLogin(request.POST)
+        if form.is_valid():
+            var_usuario = form.cleaned_data['usuario']
+            var_senha = form.cleaned_data['senha']
 
-        user = authenticate(request, username=var_usuario, password=var_senha)
+            user = authenticate(request, username=var_usuario, password=var_senha)
 
-        if user is not None:
-            auth_login(request, user)
-            return redirect('reservar_quarto')
+            if user is not None:
+                auth_login(request, user)
+                return redirect('reservar_quarto')
+            else:
+                messages.error(request, "Usuário ou senha inválidos")
+                return redirect('homepage')  # Redireciona para a página inicial se o login falhar
         else:
-            return HttpResponse("<h1>Usuário ou senha inválidos</h1>")
+            messages.error(request, "Formulário inválido")
+            return redirect('homepage')
     else:
         form = FormLogin()
-        return render(request, "login.html", {"form": form}) #retorna a pagina login.html
-
+        return render(request, "login.html", {"form": form})
 # ----------------------------------------------------------------------------------------------------------------------------
 
 def logout(request):
