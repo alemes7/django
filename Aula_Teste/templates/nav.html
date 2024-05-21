@@ -52,3 +52,18 @@
         </div>
     </div>
 </nav>
+
+<style>
+    .navbar-nav .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #ffc107;
+    }
+
+    .navbar-nav .nav-link.active:hover .bi-box-arrow-right {
+        transform: rotate(90deg);
+    }
+</style>
