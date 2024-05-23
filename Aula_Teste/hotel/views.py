@@ -8,6 +8,7 @@ from .models import Reserva_quarto #importa o model reserva_quarto
 from django.contrib import messages
 from django.contrib.auth.models import User #importa o model usuario do django
 from django.contrib.auth import authenticate, logout as auth_logout, login as auth_login  #importa o authenticate e login do django
+from .forms import Profile #importa o form Profile
 
 # Create your views here.
 
@@ -173,3 +174,23 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('homepage') 
+
+# ----------------------------------------------------------------------------------------------------------------------------
+
+# edit_profile faz a edição do perfil do usuário, com o if request.method == 'POST':, ele verifica se o método é POST, se for ele pega o formulário e salva, se não ele retorna o formulário para ser preenchido.
+def edit_profile(request):
+    if request.method == 'POST':
+        form = Profile(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Seu perfil foi atualizado com sucesso!')
+            return redirect('profile')  # Substitua 'profile' pela URL da página de perfil do usuário
+    else:
+        form = Profile(instance=request.user)
+
+    return render(request, 'edit_profile.html', {'form': form})
+
+# ----------------------------------------------------------------------------------------------------------------------------
+
+def profile(request):
+    return render(request, 'profile.html')  # Substitua 'profile.html' pelo nome do arquivo HTML da página de perfil do usuário

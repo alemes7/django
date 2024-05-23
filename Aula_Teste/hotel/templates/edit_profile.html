@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Editar Perfil
+{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2>Editar Perfil</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+    </form>
+</div>
+{% endblock %}

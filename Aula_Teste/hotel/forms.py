@@ -1,5 +1,6 @@
 from django import forms
 from .models import quarto
+from django.contrib.auth.models import User
 
 
 class FormReserva(forms.Form):
@@ -19,3 +20,8 @@ class FormCadastro(forms.Form):
 class FormLogin(forms.Form):
     usuario = forms.CharField(label='Usuário', max_length=20)
     senha = forms.CharField(label='Senha', max_length=20, widget=forms.PasswordInput)
+
+class Profile(forms.ModelForm):
+    class Meta: # class meta é uma classe interna que fornece metadados adicionais ao formulário
+        model = User  # Especifica o modelo ao qual o formulário está vinculado
+        fields = ['first_name', 'last_name', 'email']  # Especifica os campos do modelo a serem incluídos no formulário
